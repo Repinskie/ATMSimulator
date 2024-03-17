@@ -3,11 +3,9 @@ package org.repinskie.service;
 
 public class User {
     private String userName;
-    private int age;
 
-    public User(String userName, int age) {
+    public User(String userName) {
         this.userName = userName;
-        this.age = age;
     }
 
     public String getUserName() {
@@ -18,16 +16,8 @@ public class User {
         this.userName = userName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    /*public void addAccount(String userName,int userAge,int pinCode){
-        authenticationManager.addAccount(userName,userAge,pinCode);
+    /*public void addAccount(String userName,int pinCode){
+        authenticationManager.addAccount(userName,pinCode);
     }
     public void authentication(String userName, int pinCode){
         authenticationManager.authenticate(userName,pinCode);
@@ -38,8 +28,8 @@ public class User {
             System.out.println("Operation declined, incorrect PIN code.");
         }
     }
-    public void createAccount(String userName,int userAge,int pinCode){
-        authenticationManager.addAccount(userName,userAge,pinCode);
+    public void createAccount(String userName,int pinCode){
+        authenticationManager.addAccount(userName,pinCode);
 
     }
     public void signIN(String username, int pinCode){

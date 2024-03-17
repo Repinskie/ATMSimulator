@@ -1,13 +1,16 @@
 package org.repinskie.service;
 
 
+import org.repinskie.service.accountManagementInterface.AccountManager;
+import org.repinskie.service.accountManagementInterface.AccountService;
+
 public class Account {
     private String username;
     private int pinCode;
     private double balance;
-    private AccountService accountService;
-    public Account(AccountService accountService){
-        this.accountService = accountService;
+    private AccountManager accountManager;
+    public Account(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 
     public Account(String username,int pinCode) {
@@ -38,6 +41,11 @@ public class Account {
 
     public void setPinCode(int pinCode) {
         this.pinCode = pinCode;
+    }
+    public static void isExit(boolean exited){
+        if (exited){
+            System.out.println("\nBye!");
+        }
     }
 
 }

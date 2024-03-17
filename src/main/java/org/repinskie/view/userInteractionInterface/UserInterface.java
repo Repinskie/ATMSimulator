@@ -1,7 +1,7 @@
 package org.repinskie.view.userInteractionInterface;
-
-import java.util.Scanner;
-
 public interface UserInterface {
-    void displayStartMenu(Scanner console);
+    void displayStartMenu();
+    void  showNewAccount();
+    void showLogIn();
+    void showAccount(/*String username,int PINCode*/);
 }

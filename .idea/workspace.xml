@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdf97a0-7ba8-49ba-90a2-a6a173394e86" name="Changes" comment="Changes in the Service and View">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9031be24-7938-4391-8f7f-2eee2cfc85ef.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9031be24-7938-4391-8f7f-2eee2cfc85ef/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9031be24-7938-4391-8f7f-2eee2cfc85ef/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9031be24-7938-4391-8f7f-2eee2cfc85ef/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9031be24-7938-4391-8f7f-2eee2cfc85ef/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dataAccessObject/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dataAccessObject/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/AccountManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/SecureAccountManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/SimpleAccountManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dataAccessObject/AccountDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dataAccessObject/TransactionDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dataAccessObject/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/ATMConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/ATMConsoleView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/UserInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/UserInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/UserInputHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/ConsoleUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/ConsoleUserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -74,6 +65,9 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -93,13 +87,17 @@
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "secondBranch",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -139,6 +137,7 @@
       <workItem from="1710301621773" duration="22266000" />
       <workItem from="1710389690318" duration="10280000" />
       <workItem from="1710492480968" duration="9882000" />
+      <workItem from="1710590691242" duration="9197000" />
     </task>
     <servers />
   </component>

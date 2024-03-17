@@ -1,18 +1,22 @@
 
 package org.repinskie.view;
 
-import org.repinskie.view.userInteractionInterface.ConsoleUserInterface;
+
+import org.repinskie.view.userInteractionInterface.UserInterface;
 
 import java.util.Scanner;
 
 public class ATMConsoleView {
-    private final ConsoleUserInterface consoleUserInterface;
-    public ATMConsoleView(ConsoleUserInterface consoleUserInterface){
-        this.consoleUserInterface = consoleUserInterface;
+    private UserInterface userInterface;
+
+    public ATMConsoleView(UserInterface userInterface) {
+        this.userInterface = userInterface;
     }
-    public void startMenu(Scanner console) {
-        consoleUserInterface.displayStartMenu(console);
+
+    public void startMenu() {
+        userInterface.displayStartMenu();
 
     }
+
 }
 
