@@ -1,6 +1,5 @@
 package org.repinskie.service;
 
-
 public class User {
     private String userName;
 
@@ -15,7 +14,6 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
     /*public void addAccount(String userName,int pinCode){
         authenticationManager.addAccount(userName,pinCode);
     }

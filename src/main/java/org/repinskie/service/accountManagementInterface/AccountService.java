@@ -1,10 +1,7 @@
 package org.repinskie.service.accountManagementInterface;
-
 import org.repinskie.service.Account;
-
 import java.util.Map;
 import java.util.Scanner;
-
 public class AccountService implements  AccountManager{
     private static Scanner scanner = new Scanner(System.in);
     private Account account;
@@ -12,26 +9,18 @@ public class AccountService implements  AccountManager{
         this.account = account;
     }
     private Map<String,Account> accountMap;
-
-    public AccountService() {
-
-    }
-
     @Override
     public double checkBalance() {
         return account.getBalance();
     }
-
     @Override
     public void deposit(double amount) {
         account.setBalance(amount);
     }
-
     @Override
     public void withdraw() {
 
     }
-
     @Override
     public void transferFunds() {
 

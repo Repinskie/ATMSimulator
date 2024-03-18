@@ -1,10 +1,6 @@
-
 package org.repinskie.view;
 
-
 import org.repinskie.view.userInteractionInterface.UserInterface;
-
-import java.util.Scanner;
 
 public class ATMConsoleView {
     private UserInterface userInterface;
@@ -15,8 +11,6 @@ public class ATMConsoleView {
 
     public void startMenu() {
         userInterface.displayStartMenu();
-
     }
-
 }
 

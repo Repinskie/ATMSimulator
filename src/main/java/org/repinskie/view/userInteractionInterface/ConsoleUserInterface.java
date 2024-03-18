@@ -5,12 +5,14 @@ import org.repinskie.service.accountManagementInterface.AccountService;
 import org.repinskie.view.readerInterface.ReaderForCreate;
 import org.repinskie.view.readerInterface.ReaderNamePINCode;
 import org.repinskie.view.readerInterface.ReaderInterface;
+
 import java.util.Scanner;
 
 public class ConsoleUserInterface implements UserInterface {
     private AccountService accountService;
     private Account account;
     public static Scanner menuScanner = new Scanner(System.in);
+
     @Override
     public void displayStartMenu() {
         System.out.println("\n1. Create an account");
@@ -25,29 +27,34 @@ public class ConsoleUserInterface implements UserInterface {
                 break;
             case '1':
                 showNewAccount();
+                showAccount();
                 break;
             case '2':
                 showLogIn();
+                showAccount();
                 break;
             default:
                 System.out.println("Unknown command,please enter a valid command:");
                 displayStartMenu();
         }
     }
+
     @Override
     public void showNewAccount() {
         ReaderInterface readerInterface1 = new ReaderForCreate();
         readerInterface1.readName();
         readerInterface1.readPINCode();
     }
+
     @Override
-    public void showLogIn(){
+    public void showLogIn() {
         ReaderInterface readerInterface2 = new ReaderNamePINCode();
         readerInterface2.readName();
         readerInterface2.readPINCode();
     }
+
     @Override
-    public void showAccount(){
+    public void showAccount() {
         System.out.println("Select option:\n" +
                 "1. Check Balance.\n" +
                 "2. Withdraw.\n" +
@@ -57,7 +64,7 @@ public class ConsoleUserInterface implements UserInterface {
         char action = menuScanner.nextLine()
                 .trim()
                 .charAt(0);
-        switch (action){
+        switch (action) {
             case '1':
                 System.out.println("\nYour balance:");
                 accountService.checkBalance();

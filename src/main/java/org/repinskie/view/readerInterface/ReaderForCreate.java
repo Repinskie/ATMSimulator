@@ -2,17 +2,18 @@ package org.repinskie.view.readerInterface;
 
 import java.util.Scanner;
 
-public class ReaderForCreate implements ReaderInterface{
+public class ReaderForCreate implements ReaderInterface {
     private final Scanner console = new Scanner(System.in);
+
     @Override
     public String readName() {
         System.out.println("Enter your name:");
         while (true) {
             String name = console.nextLine();
             if (name.trim().isEmpty()) {
-                System.out.println("Field 'Name' must be filled in, enter your name.");
+                System.out.println("Field 'Name' must be filled in, enter your name:");
             } else if (!name.matches("\\p{Alpha}+")) {
-                System.out.println("Invalid name, please enter letters only, reenter your name.");
+                System.out.println("Invalid name, please enter letters only, reenter your name:");
             } else {
                 return name;
             }
