@@ -1,36 +1,26 @@
 package org.repinskie.service;
 
 public class User {
-    private String userName;
-
-    public User(String userName) {
-        this.userName = userName;
+    private int id;
+    private String username;
+    public User(int id, String username) {
+        this.id = id;
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(int id) {
+        this.id = id;
     }
-    /*public void addAccount(String userName,int pinCode){
-        authenticationManager.addAccount(userName,pinCode);
-    }
-    public void authentication(String userName, int pinCode){
-        authenticationManager.authenticate(userName,pinCode);
 
+    public String getUsername() {
+        return username;
     }
-    public void PINCodeChanges(int PINCode){
-        if(pinCode != PINCode){
-            System.out.println("Operation declined, incorrect PIN code.");
-        }
-    }
-    public void createAccount(String userName,int pinCode){
-        authenticationManager.addAccount(userName,pinCode);
 
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void signIN(String username, int pinCode){
-        authenticationManager.authenticate(username,pinCode);
-    }*/
 }

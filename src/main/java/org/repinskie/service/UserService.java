@@ -1,30 +1,18 @@
 package org.repinskie.service;
 
-import java.util.Map;
+import org.repinskie.dao.UserDAO;
+
+import java.sql.SQLException;
 
 public class UserService {
-    private Map<String, Account> userMap;
-
-    public UserService(Map<String, Account> userMap) {
-        this.userMap = userMap;
-    }
-
-    public boolean authenticationUser(String username, int pinCode) {
-        if (userMap.containsKey(username)) {
-            Account account = userMap.get(username);
-            return account.getPinCode() == pinCode;
+    private UserDAO userDAO;
+    public void createUser(User user) {
+        try {
+            userDAO.save(user);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return false;
+
     }
 
-    public boolean changePin(String username, int oldPin, int newPin) {
-        if (userMap.containsKey(username)) {
-            Account account = userMap.get(username);
-            if (account.getPinCode() == oldPin) {
-                account.setPinCode(newPin);
-                return true;
-            }
-        }
-        return false;
-    }
 }

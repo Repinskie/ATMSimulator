@@ -1,35 +1,82 @@
 package org.repinskie.service.accountManagementInterface;
-import org.repinskie.service.Account;
-import java.util.Map;
-import java.util.Scanner;
-public class AccountService implements  AccountManager{
-    private static Scanner scanner = new Scanner(System.in);
+
+import org.repinskie.dao.AccountDAO;
+import org.repinskie.service.UserService;
+
+
+public class AccountService implements AccountManager {
     private Account account;
-    public AccountService(Account account){
-        this.account = account;
+    private UserService userService;
+    private AccountDAO accountDAO;
+
+    public AccountService() {
     }
-    private Map<String,Account> accountMap;
+
     @Override
     public double checkBalance() {
         return account.getBalance();
     }
+
     @Override
-    public void deposit(double amount) {
+    public void doDeposit(double amount) {
         account.setBalance(amount);
     }
-    @Override
-    public void withdraw() {
 
+    @Override
+    public void doWithdraw(double withdraw) {
+        if (withdraw <= 0) {
+            System.out.println("Invalid amount.");
+        }
+        if (account.getBalance() >= withdraw) {
+            double newBalance = account.getBalance() - withdraw;
+            account.setBalance(newBalance);
+            System.out.println("Withdraw successful. New balance :" + newBalance);
+        } else {
+            System.out.println("Insufficient funds.");
+        }
     }
+
     @Override
     public void transferFunds() {
+        /*if (amount <= 0) {
+            System.out.println("Invalid amount.");
+        }
+        if (account.getBalance() >= amount) {
+            double senderBalance = account.getBalance() - amount;
+            double recipientBalance = recipientAccount.setBalance(senderBalance) + account;
+        }*/
+    }
 
+    public void changePinCode(int pinCode) {
+        if (pinCode != account.getPinCode()) {
+            System.out.println("Operation declined, incorrect PIN code.");
+        } else {
+            account.setPinCode(pinCode);
+        }
     }
-    public void changePinCode(int pinCode){
-        account.setPinCode(pinCode);
-    }
-    /*@Override
-    public void transferFunds(String senderUser, int senderPin, String receiverUserName, double amount) {
+
+    /*public void createAccount(Account account) {
+        try {
+            accountDAO.save(account);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }*/
+
+
+    public void authentication(String username, int pinCode) {
+        if (username.equals(account.getUsername()) && (account.getPinCode() == pinCode)) {
+            System.out.println("Login was successful");
+        } else {
+            System.out.println("Incorrect username or pinCode!");
+        }
+
+    }
+
+    public static void isExit(boolean exited) {
+        if (exited) {
+            System.out.println("\nBye!");
+        }
+    }
 }

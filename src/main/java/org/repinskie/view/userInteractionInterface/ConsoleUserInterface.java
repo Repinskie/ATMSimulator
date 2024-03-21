@@ -1,9 +1,8 @@
 package org.repinskie.view.userInteractionInterface;
 
-import org.repinskie.service.Account;
+import org.repinskie.service.accountManagementInterface.Account;
 import org.repinskie.service.accountManagementInterface.AccountService;
-import org.repinskie.view.readerInterface.ReaderForCreate;
-import org.repinskie.view.readerInterface.ReaderNamePINCode;
+import org.repinskie.view.readerInterface.ReaderInput;
 import org.repinskie.view.readerInterface.ReaderInterface;
 
 import java.util.Scanner;
@@ -11,6 +10,10 @@ import java.util.Scanner;
 public class ConsoleUserInterface implements UserInterface {
     private AccountService accountService;
     private Account account;
+
+    /*public ConsoleUserInterface() {
+    }*/
+
     public static Scanner menuScanner = new Scanner(System.in);
 
     @Override
@@ -23,15 +26,13 @@ public class ConsoleUserInterface implements UserInterface {
                 .charAt(0);
         switch (action) {
             case '0':
-                Account.isExit(true);
+                AccountService.isExit(true);
                 break;
             case '1':
-                showNewAccount();
-                showAccount();
+                createNewAccount();
                 break;
             case '2':
                 showLogIn();
-                showAccount();
                 break;
             default:
                 System.out.println("Unknown command,please enter a valid command:");
@@ -40,21 +41,7 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void showNewAccount() {
-        ReaderInterface readerInterface1 = new ReaderForCreate();
-        readerInterface1.readName();
-        readerInterface1.readPINCode();
-    }
-
-    @Override
-    public void showLogIn() {
-        ReaderInterface readerInterface2 = new ReaderNamePINCode();
-        readerInterface2.readName();
-        readerInterface2.readPINCode();
-    }
-
-    @Override
-    public void showAccount() {
+    public void showAccountOptions(Account account) {
         System.out.println("Select option:\n" +
                 "1. Check Balance.\n" +
                 "2. Withdraw.\n" +
@@ -70,26 +57,51 @@ public class ConsoleUserInterface implements UserInterface {
                 accountService.checkBalance();
                 break;
             case '2':
-                System.out.println("\nEnter deposit:");
-                accountService.withdraw();
+                System.out.println("\nAmount of money to withdraw:");
+                double withdraw = menuScanner.nextDouble();
+                accountService.doWithdraw(withdraw);
                 break;
             case '3':
-                System.out.println("\nTo do transfer:");
+                System.out.println("\nTo do a transfer:");
                 accountService.transferFunds();
                 break;
             case '4':
-                System.out.println("\nEnter income:");
-                double amount = menuScanner.nextDouble();
-                accountService.deposit(amount);
+                System.out.println("\nAmount of money to deposit:");
+                double deposit = menuScanner.nextDouble();
+                accountService.doDeposit(deposit);
                 break;
             case '5':
-                ReaderInterface readerInterface = new ReaderNamePINCode();
+                ReaderInterface readerInterface = new ReaderInput();
                 int newPIN = readerInterface.readPINCode();
                 accountService.changePinCode(newPIN);
                 break;
             default:
                 System.out.println("Unknown command,please enter a valid command.");
         }
+    }
+
+    @Override
+    public void createNewAccount() {
+        ReaderInterface readerInterface1 = new ReaderInput();
+        System.out.println("Enter your username:");
+        String username = readerInterface1.readName();
+        System.out.println("Create new pinCode (4 digits):");
+        int pinCode = readerInterface1.readPINCode();
+        Account account = new Account(username,pinCode);
+       /* accountService.createAccount(account);*/
+        showAccountOptions(account);
+
+    }
+
+    @Override
+    public void showLogIn() {
+        ReaderInterface readerInterface2 = new ReaderInput();
+        System.out.println("Enter your username:");
+        String username = readerInterface2.readName();
+        System.out.println("Enter your pinCode(4 digits):");
+        int pinCode = readerInterface2.readPINCode();
+        accountService.authentication(username, pinCode);
+        showAccountOptions(account);
     }
 }
 
