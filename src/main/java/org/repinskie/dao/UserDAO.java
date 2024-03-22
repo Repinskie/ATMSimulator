@@ -11,7 +11,7 @@ public class UserDAO {
 
     private UserService userService;
     Connection connection = null;
-    public void save(User user) throws SQLException {
+    public void saveUser(User user) throws SQLException {
         String query = "INSERT INTO users (user) VALUES (?)";
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setString(1,user.getUsername());

@@ -11,8 +11,9 @@ public class ConsoleUserInterface implements UserInterface {
     private AccountService accountService;
     private Account account;
 
-    /*public ConsoleUserInterface() {
-    }*/
+    public ConsoleUserInterface(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     public static Scanner menuScanner = new Scanner(System.in);
 
@@ -41,7 +42,7 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void showAccountOptions(Account account) {
+    public void showAccountOptions(String username,int pinCode) {
         System.out.println("Select option:\n" +
                 "1. Check Balance.\n" +
                 "2. Withdraw.\n" +
@@ -88,9 +89,8 @@ public class ConsoleUserInterface implements UserInterface {
         System.out.println("Create new pinCode (4 digits):");
         int pinCode = readerInterface1.readPINCode();
         Account account = new Account(username,pinCode);
-       /* accountService.createAccount(account);*/
-        showAccountOptions(account);
-
+        accountService.createAccount(account);
+        showAccountOptions();
     }
 
     @Override
@@ -101,7 +101,6 @@ public class ConsoleUserInterface implements UserInterface {
         System.out.println("Enter your pinCode(4 digits):");
         int pinCode = readerInterface2.readPINCode();
         accountService.authentication(username, pinCode);
-        showAccountOptions(account);
+        showAccountOptions();
     }
 }
-

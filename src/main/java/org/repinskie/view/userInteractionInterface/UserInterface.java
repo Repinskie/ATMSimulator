@@ -9,5 +9,5 @@ public interface UserInterface {
 
     void showLogIn();
 
-    void showAccountOptions(Account account);
+    void showAccountOptions(String username,int pinCode);
 }

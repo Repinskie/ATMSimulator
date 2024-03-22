@@ -10,20 +10,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/AccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/DBTools/DBConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/DBTools/DataBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/DBTools/Table.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/TransactionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/TransactionDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/AccountManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountManagementInterface/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/readerInterface/ReaderForCreate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/readerInterface/ReaderNamePINCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/readerInterface/ReaderInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/ConsoleUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/ConsoleUserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/view/userInteractionInterface/UserInterface.java" afterDir="false" />
     </list>
@@ -105,33 +96,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Unnamed.executor": "Debug",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.repinskie.Main" />
@@ -185,7 +176,8 @@
       <workItem from="1710939881838" duration="2129000" />
       <workItem from="1710950728990" duration="2919000" />
       <workItem from="1710985690908" duration="3722000" />
-      <workItem from="1711028316791" duration="8451000" />
+      <workItem from="1711028316791" duration="10416000" />
+      <workItem from="1711117967476" duration="7909000" />
     </task>
     <servers />
   </component>

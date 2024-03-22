@@ -8,12 +8,15 @@ public class AccountService implements AccountManager {
     private Account account;
     private UserService userService;
     private AccountDAO accountDAO;
+    public AccountService(AccountDAO accountDAO){
+        this.accountDAO = accountDAO;
+    }
 
     public AccountService() {
     }
 
     @Override
-    public double checkBalance() {
+    public double checkBalance(String queryUsername,int pinCode) {
         return account.getBalance();
     }
 
@@ -55,22 +58,18 @@ public class AccountService implements AccountManager {
         }
     }
 
-    /*public void createAccount(Account account) {
-        try {
-            accountDAO.save(account);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }*/
+    public void createAccount(Account account) {
+            accountDAO.addNewAccount(account);
+    }
 
 
     public void authentication(String username, int pinCode) {
-        if (username.equals(account.getUsername()) && (account.getPinCode() == pinCode)) {
+        /*if (username.equals(account.getUsername()) && (account.getPinCode() == pinCode)) {
             System.out.println("Login was successful");
         } else {
             System.out.println("Incorrect username or pinCode!");
-        }
+        }*/
+
 
     }
 

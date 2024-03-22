@@ -8,7 +8,7 @@ public class UserService {
     private UserDAO userDAO;
     public void createUser(User user) {
         try {
-            userDAO.save(user);
+            userDAO.saveUser(user);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
