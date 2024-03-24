@@ -1,34 +1,18 @@
 package org.repinskie.service;
 
-import java.time.LocalDateTime;
+import org.repinskie.dao.transactionManagmentInterface.TransactionDAOImpl;
 
 public class TransactionService {
-    private String sender;
-    private String receiver;
-    private double amount;
-    private LocalDateTime localDateTime;
-
-    public TransactionService(String sender, String receiver, double amount, LocalDateTime localDateTime) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.amount = amount;
-        this.localDateTime = localDateTime;
+    private TransactionDAOImpl transactionDAOImpl;
+    /*public TransactionService(TransactionDAO transactionDAO){
+        this.transactionDAO = transactionDAO;
     }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
-    }
-
+    public void performTransaction(int senderAccountId, int receiverAccountId, double amount){
+        Transaction transaction = new Transaction();
+        transaction.setSenderAccountId(senderAccountId);
+        transaction.setReceiverAccountId(receiverAccountId);
+        transaction.setAmount(amount);
+        transaction.setTimestamp(new Date());
+        transactionDAO.saveTransaction(transaction);
+    }*/
 }

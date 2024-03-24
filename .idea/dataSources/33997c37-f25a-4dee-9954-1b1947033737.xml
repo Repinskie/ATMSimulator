@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>955</IntrospectionStateNumber>
+      <IntrospectionStateNumber>976</IntrospectionStateNumber>
       <ServerVersion>16.2</ServerVersion>
-      <StartupTime>1710491354</StartupTime>
+      <StartupTime>1711200673</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -106,7 +106,7 @@ false America/Argentina/San_Luis
 false America/Argentina/Tucuman
 false America/Argentina/Ushuaia
 false America/Aruba
-true America/Asuncion
+false America/Asuncion
 false America/Atikokan
 true America/Atka
 false America/Bahia
@@ -677,7 +677,7 @@ false PST
 true PST8PDT
 false PWT
 true PYST
-true PYT
+false PYT
 false Pacific/Apia
 true Pacific/Auckland
 false Pacific/Bougainville
@@ -800,7 +800,7 @@ false Zulu
 14643||10|C|G
 14643||-9223372036854775808|U|G
 14643||10|U|G</Grants>
-      <IntrospectionStateNumber>955</IntrospectionStateNumber>
+      <IntrospectionStateNumber>976</IntrospectionStateNumber>
       <ObjectId>16471</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4240,18 +4240,18 @@ false Zulu
     <schema id="268" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>955</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-03-22.15:39:22</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>976</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-03-24.16:16:34</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <sequence id="269" parent="268" name="account_id_seq">
+    <sequence id="269" parent="268" name="accounts_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>16549</ObjectId>
+      <ObjectId>16572</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>941</StateNumber>
+      <StateNumber>968</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="270" parent="268" name="users_id_seq">
@@ -4263,8 +4263,8 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="271" parent="268" name="accounts">
-      <ObjectId>16550</ObjectId>
-      <StateNumber>950</StateNumber>
+      <ObjectId>16573</ObjectId>
+      <StateNumber>968</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4276,49 +4276,48 @@ false Zulu
     </table>
     <column id="273" parent="271" name="id">
       <DasType>integer|0s</DasType>
-      <DefaultExpression>nextval(&apos;account_id_seq&apos;::regclass)</DefaultExpression>
+      <DefaultExpression>nextval(&apos;accounts_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>941</StateNumber>
-      <SequenceId>16549</SequenceId>
+      <StateNumber>968</StateNumber>
+      <SequenceId>16572</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="274" parent="271" name="username">
-      <DasType>varchar(100)|0s</DasType>
+      <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StateNumber>941</StateNumber>
+      <Position>3</Position>
+      <StateNumber>968</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="275" parent="271" name="pincode">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StateNumber>941</StateNumber>
+      <Position>4</Position>
+      <StateNumber>968</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="276" parent="271" name="balance">
-      <DasType>double precision|0s</DasType>
-      <DefaultExpression>0.0</DefaultExpression>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StateNumber>944</StateNumber>
-      <TypeId>701</TypeId>
+      <DasType>numeric(12,2 digit)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>968</StateNumber>
+      <TypeId>1700</TypeId>
     </column>
-    <index id="277" parent="271" name="account_pkey">
+    <index id="277" parent="271" name="accounts_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16554</ObjectId>
+      <ObjectId>16577</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>941</StateNumber>
+      <StateNumber>968</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="278" parent="271" name="account_pkey">
-      <ObjectId>16555</ObjectId>
+    <key id="278" parent="271" name="accounts_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16578</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>941</StateNumber>
-      <UnderlyingIndexId>16554</UnderlyingIndexId>
+      <StateNumber>968</StateNumber>
+      <UnderlyingIndexId>16577</UnderlyingIndexId>
     </key>
     <column id="279" parent="272" name="id">
       <DasType>integer|0s</DasType>

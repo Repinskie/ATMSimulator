@@ -1,4 +1,4 @@
-package org.repinskie.view.readerInterface;
+package org.repinskie.service.readerInterface;
 
 import java.util.Scanner;
 

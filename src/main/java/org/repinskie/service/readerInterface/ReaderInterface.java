@@ -1,4 +1,4 @@
-package org.repinskie.view.readerInterface;
+package org.repinskie.service.readerInterface;
 
 public interface ReaderInterface {
     String readName();

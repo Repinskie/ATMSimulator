@@ -1,9 +1,9 @@
-package org.repinskie.view.userInteractionInterface;
+package org.repinskie.view;
 
-import org.repinskie.service.accountManagementInterface.Account;
-import org.repinskie.service.accountManagementInterface.AccountService;
-import org.repinskie.view.readerInterface.ReaderInput;
-import org.repinskie.view.readerInterface.ReaderInterface;
+import org.repinskie.models.Account;
+import org.repinskie.service.AccountService;
+import org.repinskie.service.readerInterface.ReaderInput;
+import org.repinskie.service.readerInterface.ReaderInterface;
 
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void showAccountOptions(String username,int pinCode) {
+    public void showAccountOptions() {
         System.out.println("Select option:\n" +
                 "1. Check Balance.\n" +
                 "2. Withdraw.\n" +
@@ -78,6 +78,7 @@ public class ConsoleUserInterface implements UserInterface {
                 break;
             default:
                 System.out.println("Unknown command,please enter a valid command.");
+                showAccountOptions();
         }
     }
 
@@ -88,9 +89,10 @@ public class ConsoleUserInterface implements UserInterface {
         String username = readerInterface1.readName();
         System.out.println("Create new pinCode (4 digits):");
         int pinCode = readerInterface1.readPINCode();
-        Account account = new Account(username,pinCode);
-        accountService.createAccount(account);
-        showAccountOptions();
+        Account account = new Account();
+        account.setUsername(username);
+        account.setPinCode(pinCode);
+        accountService.registerAccount(account);
     }
 
     @Override

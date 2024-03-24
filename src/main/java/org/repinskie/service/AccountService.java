@@ -1,14 +1,16 @@
-package org.repinskie.service.accountManagementInterface;
+package org.repinskie.service;
 
-import org.repinskie.dao.AccountDAO;
-import org.repinskie.service.UserService;
+import org.repinskie.dao.accountManagmentInterface.AccountDAO;
+import org.repinskie.dao.accountManagmentInterface.AccountDAOImpl;
+import org.repinskie.models.Account;
 
 
 public class AccountService implements AccountManager {
     private Account account;
     private UserService userService;
     private AccountDAO accountDAO;
-    public AccountService(AccountDAO accountDAO){
+
+    public AccountService(AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
     }
 
@@ -16,13 +18,13 @@ public class AccountService implements AccountManager {
     }
 
     @Override
-    public double checkBalance(String queryUsername,int pinCode) {
+    public double checkBalance() {
         return account.getBalance();
     }
 
     @Override
-    public void doDeposit(double amount) {
-        account.setBalance(amount);
+    public void doDeposit(double deposit) {
+        account.setBalance(deposit);
     }
 
     @Override
@@ -58,8 +60,8 @@ public class AccountService implements AccountManager {
         }
     }
 
-    public void createAccount(Account account) {
-            accountDAO.addNewAccount(account);
+    public void registerAccount(Account account) {
+        accountDAO.saveAccount(account);
     }
 
 

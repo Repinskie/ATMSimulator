@@ -1,18 +1,16 @@
 package org.repinskie.service;
 
-import org.repinskie.dao.UserDAO;
-
-import java.sql.SQLException;
+import org.repinskie.dao.userManagmentInterface.UserDAO;
+import org.repinskie.models.User;
 
 public class UserService {
     private UserDAO userDAO;
-    public void createUser(User user) {
-        try {
-            userDAO.saveUser(user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public UserService(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    public void registerUser(User user){
 
+        userDAO.createUser(user);
     }
 
 }

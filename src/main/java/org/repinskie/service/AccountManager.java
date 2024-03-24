@@ -1,9 +1,9 @@
-package org.repinskie.service.accountManagementInterface;
+package org.repinskie.service;
 
 public interface AccountManager {
-    public double checkBalance(String queryUsername,int pinCode);
-    public void doDeposit(double amount);
-    public void doWithdraw(double amount);
+    public double checkBalance();
+    public void doDeposit(double deposit);
+    public void doWithdraw(double withdraw);
     public void transferFunds();
     /*public double checkBalance(String username,int pinCode);
     public void deposit(String username,int pinCode,double amount);
