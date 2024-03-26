@@ -1,14 +1,20 @@
 package org.repinskie.models;
 
-public class User {
+import java.math.BigDecimal;
+
+public class Account {
     private int id;
     private String username;
-    private String email;
+    private int pinCode;
+    private double balance;
 
-    public User(int id, String username, String email) {
-        this.id = id;
+    public Account() {
+    }
+
+    public Account(String username, int pinCode) {
         this.username = username;
-        this.email = email;
+        this.pinCode = pinCode;
+        this.balance = 0.0;
     }
 
     public int getId() {
@@ -27,11 +33,29 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public int getPinCode() {
+        return pinCode;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance += balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+               "id=" + id +
+               ", username='" + username + '\'' +
+               ", pinCode=" + pinCode +
+               ", balance=" + balance +
+               '}';
     }
 }

@@ -2,65 +2,65 @@ package org.repinskie.dao.accountManagmentInterface;
 
 import org.repinskie.dao.dbConnections.DBConnection;
 import org.repinskie.exception.DAOException;
-import org.repinskie.models.User;
 import org.repinskie.models.Account;
 
 import java.sql.*;
-import java.util.List;
 
 public class AccountDAOImpl implements AccountDAO {
-    private static final AccountDAOImpl INSTANCE = new AccountDAOImpl();
-    private static final String DELETE_SQL = "DELETE FROM accounts WHERE id = ?";
-    private static final String SAVE_SQL = "INSERT INTO accounts (username, pinCode, balance) VALUES (?,?,?);";
-
-    public AccountDAOImpl() {
-    }
-
-    public static AccountDAOImpl getInstance() {
-        return INSTANCE;
-    }
 
     @Override
-    public List<User> getAllAccounts() {
-        return null;
-    }
-
-    @Override
-    public Account getAccountById(Long id) {
-        return null;
-    }
-
-    @Override
-    public void updateAccount(Account account) {
-
-    }
-
-    @Override
-    public void deleteAccount(Long id) {
+    public double getBalance(String username) {
+        double balance = 0.0;
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL)) {
-            preparedStatement.setLong(1, id);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT balance FROM users WHERE username = ?")) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    balance = resultSet.getDouble("balance");
+                }
+            }
         } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return  balance;
+    }
+
+    @Override
+    public void depositBalance(String username, double amount) {
+        try(Connection connection = DBConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET balance = balance + ? WHERE username = ?")){
+            preparedStatement.setDouble(1,amount);
+            preparedStatement.setString(2,username);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0){
+                System.out.println("Deposit successful.");
+            }else {
+                System.out.println("Deposit failed, User not found.");
+            }
+        }catch (SQLException e){
             throw new DAOException(e);
         }
     }
 
     @Override
-    public void saveAccount(Account account) {
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, account.getUsername());
-            preparedStatement.setInt(2, account.getPinCode());
-            preparedStatement.setDouble(3, account.getBalance());
-            preparedStatement.executeUpdate();
-
-            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    account.setId(resultSet.getInt("id"));
-                }
+    public void withdrawBalance(String username, double amount) {
+        try(Connection connection = DBConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE  users SET balance = balance - ? WHERE username = ?")){
+            preparedStatement.setDouble(1,amount);
+            preparedStatement.setString(2,username);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0){
+                System.out.println("Withdraw successful.");
+            }else {
+                System.out.println("Deposit failed, User not found");
             }
-        } catch (SQLException exception) {
-            throw new DAOException(exception);
+        }catch (SQLException e){
+            throw new DAOException(e);
         }
+    }
+
+    @Override
+    public void updateUser(Account account) {
+
     }
 }
