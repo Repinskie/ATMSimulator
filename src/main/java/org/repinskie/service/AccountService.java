@@ -1,78 +1,76 @@
 package org.repinskie.service;
 
+
 import org.repinskie.dao.accountManagmentInterface.AccountDAO;
-import org.repinskie.dao.accountManagmentInterface.AccountDAOImpl;
-import org.repinskie.models.Account;
+import org.repinskie.models.User;
+
+import java.util.Scanner;
 
 
 public class AccountService implements AccountManager {
-    private Account account;
-    private UserService userService;
+    private static final Scanner console = new Scanner(System.in);
     private AccountDAO accountDAO;
 
-    public AccountService(AccountDAO accountDAO) {
+    private User user;
+
+    public AccountService(User user, AccountDAO accountDAO) {
+        this.user = user;
         this.accountDAO = accountDAO;
-    }
 
-    public AccountService() {
-    }
-
-    @Override
-    public double checkBalance() {
-        return account.getBalance();
     }
 
     @Override
-    public void doDeposit(double deposit) {
-        account.setBalance(deposit);
+    public double checkBalance(String username) {
+        return accountDAO.getBalance(username);
     }
 
     @Override
-    public void doWithdraw(double withdraw) {
+    public void doDeposit(String username) {
+        System.out.println("\nAmount of money to deposit:");
+        double deposit = console.nextDouble();
+        accountDAO.depositBalance(username, deposit);
+    }
+
+    @Override
+    public void doWithdraw(String username) {
+        System.out.println("\nAmount of money to withdraw:");
+        double withdraw = console.nextDouble();
         if (withdraw <= 0) {
             System.out.println("Invalid amount.");
         }
-        if (account.getBalance() >= withdraw) {
-            double newBalance = account.getBalance() - withdraw;
-            account.setBalance(newBalance);
-            System.out.println("Withdraw successful. New balance :" + newBalance);
+        if (accountDAO.getBalance(username) >= withdraw) {
+            double newBalance = accountDAO.getBalance(username) - withdraw;
+            accountDAO.withdrawBalance(username, newBalance);
+            System.out.println("New balance :" + "\n" + newBalance);
         } else {
             System.out.println("Insufficient funds.");
         }
     }
 
     @Override
-    public void transferFunds() {
-        /*if (amount <= 0) {
+    public void transferAmount(String senderName) {
+        System.out.println("Enter an amount for transfer:");
+        double amount = console.nextDouble();
+        if (amount <= 0) {
             System.out.println("Invalid amount.");
         }
-        if (account.getBalance() >= amount) {
-            double senderBalance = account.getBalance() - amount;
-            double recipientBalance = recipientAccount.setBalance(senderBalance) + account;
-        }*/
+        if (accountDAO.getBalance(senderName) >= amount) {
+            System.out.println("Enter account name for transfer: ");
+            String recipient = console.nextLine();
+            accountDAO.transfer(senderName, recipient, amount);
+        }
     }
 
     public void changePinCode(int pinCode) {
-        if (pinCode != account.getPinCode()) {
+        /*UserDAO userDAO = new UserDAOImpl();
+        UserDAOImpl.getInstance();
+        User user = userDAO.getPincode();
+        if (pinCode != user.getPinCode()) {
             System.out.println("Operation declined, incorrect PIN code.");
         } else {
-            account.setPinCode(pinCode);
-        }
-    }
+            user.setPinCode(pinCode);
 
-    public void registerAccount(Account account) {
-        accountDAO.saveAccount(account);
-    }
-
-
-    public void authentication(String username, int pinCode) {
-        /*if (username.equals(account.getUsername()) && (account.getPinCode() == pinCode)) {
-            System.out.println("Login was successful");
-        } else {
-            System.out.println("Incorrect username or pinCode!");
         }*/
-
-
     }
 
     public static void isExit(boolean exited) {
