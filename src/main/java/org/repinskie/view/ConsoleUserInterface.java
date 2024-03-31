@@ -1,108 +1,149 @@
 package org.repinskie.view;
 
-import org.repinskie.models.Account;
-import org.repinskie.service.AccountService;
-import org.repinskie.service.readerInterface.ReaderInput;
-import org.repinskie.service.readerInterface.ReaderInterface;
+import org.repinskie.service.accountServiceInterface.AccountManager;
+import org.repinskie.service.cryptorInterface.PinCodeEncryptor;
+import org.repinskie.service.userServiceInterface.UserManager;
+import org.repinskie.service.readerInputInterface.ReaderInput;
 
 import java.util.Scanner;
+/**
+ * Console user interface class for interacting with the application through the console.
+ */
+public class ConsoleUserInterface {
+    private AccountManager accountManager;
+    private UserManager userManager;
 
-public class ConsoleUserInterface implements UserInterface {
-    private AccountService accountService;
-    private Account account;
-
-    public ConsoleUserInterface(AccountService accountService) {
-        this.accountService = accountService;
+    /**
+     * Constructor of the ConsoleUserInterface class.
+     *
+     * @param accountManager AccountManager object for managing user accounts
+     * @param userManager    UserManager object for managing users
+     */
+    public ConsoleUserInterface(AccountManager accountManager, UserManager userManager) {
+        this.accountManager = accountManager;
+        this.userManager = userManager;
     }
 
-    public static Scanner menuScanner = new Scanner(System.in);
+    /**
+     * Scanner object for reading user input from the console.
+     */
+    public static final Scanner menuScanner = new Scanner(System.in);
 
-    @Override
+    /**
+     * Displays the start menu options.
+     */
     public void displayStartMenu() {
         System.out.println("\n1. Create an account");
         System.out.println("2. Log into account");
         System.out.println("0. Exit");
-        char action = menuScanner.nextLine()
-                .trim()
-                .charAt(0);
-        switch (action) {
-            case '0':
-                AccountService.isExit(true);
-                break;
-            case '1':
-                createNewAccount();
-                break;
-            case '2':
-                showLogIn();
-                break;
-            default:
-                System.out.println("Unknown command,please enter a valid command:");
-                displayStartMenu();
+        /*userChoice = console.nextLine();*/
+        String input = menuScanner.nextLine().trim();
+        if (input.length() == 1) {
+            char action = input.charAt(0);
+            switch (action) {
+                case '0':
+                    System.out.println("See you later.");
+                    System.exit(0);
+                    break;
+                case '1':
+                    createNewAccount();
+                    break;
+                case '2':
+                    showLogIn();
+                    break;
+                default:
+                    System.out.println("Unknown command,please enter a valid command:");
+                    displayStartMenu();
+            }
+        } else {
+            System.out.println("Invalid input. Please enter only a single digit.");
+            displayStartMenu();
         }
     }
 
-    @Override
-    public void showAccountOptions() {
-        System.out.println("Select option:\n" +
+    /**
+     * Displays account options menu for the specified user.
+     *
+     * @param name    User's name
+     * @param surName User's surname
+     */
+    public void showAccountOptions(String name, String surName) {
+        System.out.println("\n Select option:\n" +
                 "1. Check Balance.\n" +
                 "2. Withdraw.\n" +
                 "3. Transfer.\n" +
                 "4. Deposit.\n" +
-                "5. Change PIN code.");
-        char action = menuScanner.nextLine()
-                .trim()
-                .charAt(0);
-        switch (action) {
-            case '1':
-                System.out.println("\nYour balance:");
-                accountService.checkBalance();
-                break;
-            case '2':
-                System.out.println("\nAmount of money to withdraw:");
-                double withdraw = menuScanner.nextDouble();
-                accountService.doWithdraw(withdraw);
-                break;
-            case '3':
-                System.out.println("\nTo do a transfer:");
-                accountService.transferFunds();
-                break;
-            case '4':
-                System.out.println("\nAmount of money to deposit:");
-                double deposit = menuScanner.nextDouble();
-                accountService.doDeposit(deposit);
-                break;
-            case '5':
-                ReaderInterface readerInterface = new ReaderInput();
-                int newPIN = readerInterface.readPINCode();
-                accountService.changePinCode(newPIN);
-                break;
-            default:
-                System.out.println("Unknown command,please enter a valid command.");
-                showAccountOptions();
+                "5. Change PIN code.\n" +
+                "0. Exit.");
+        String input = menuScanner.nextLine().trim();
+        if (input.length() == 1) {
+            char action = input.charAt(0);
+            switch (action) {
+                case '0':
+                    System.out.println("See you later.");
+                    System.exit(0);
+                    break;
+                case '1':
+                    double balance = accountManager.checkBalance(name, surName);
+                    System.out.println("\nYour balance:" +
+                            "\n" + balance);
+                    break;
+                case '2':
+                    accountManager.doWithdraw(name, surName);
+                    break;
+                case '3':
+                    accountManager.transferAmount(name, surName);
+                    break;
+                case '4':
+                    accountManager.doDeposit(name, surName);
+                    break;
+                case '5':
+                    userManager.changePinCode(name, surName);
+                    break;
+                default:
+                    System.out.println("Unknown command,please enter a valid command.");
+                    showAccountOptions(name, surName);
+            }
+        } else {
+            System.out.println("Invalid input. Please enter only a single digit.");
+            showAccountOptions(name, surName);
         }
     }
 
-    @Override
+    /**
+     * Creates a new user account.
+     */
     public void createNewAccount() {
-        ReaderInterface readerInterface1 = new ReaderInput();
-        System.out.println("Enter your username:");
-        String username = readerInterface1.readName();
+        System.out.println("Enter your name:");
+        String name = ReaderInput.readName();
+        System.out.println("Enter your Surname:");
+        String surName = ReaderInput.readSurName();
         System.out.println("Create new pinCode (4 digits):");
-        int pinCode = readerInterface1.readPINCode();
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPinCode(pinCode);
-        accountService.registerAccount(account);
+        String pinCode = ReaderInput.readPINCode();
+        String hashPin = PinCodeEncryptor.hashPinCode(pinCode);
+        if (!userManager.isAccountAlreadySaved(name, surName, hashPin)) {
+            userManager.saveUserData(name, surName, pinCode);
+            showAccountOptions(name, surName);
+        } else {
+            System.out.println("Account already created.");
+        }
     }
 
-    @Override
+    /**
+     * Displays the login interface for users to authenticate.
+     */
     public void showLogIn() {
-        ReaderInterface readerInterface2 = new ReaderInput();
-        System.out.println("Enter your username:");
-        String username = readerInterface2.readName();
-        System.out.println("Enter your pinCode(4 digits):");
-        int pinCode = readerInterface2.readPINCode();
-        accountService.authentication(username, pinCode);
-        showAccountOptions();
+        System.out.println("Enter account name:");
+        String name = ReaderInput.readName();
+        System.out.println("Enter account Surname:");
+        String surName = ReaderInput.readSurName();
+        System.out.println("Enter account pinCode (4 digits):");
+        String pinCode = ReaderInput.readPINCode();
+        if (userManager.authenticationAccount(name, surName, pinCode)) {
+            System.out.println("Authentication successful.");
+            showAccountOptions(name, surName);
+        } else {
+            System.out.println("Authentication failed. Please check account name, surname or pinCode.");
+        }
     }
 }
