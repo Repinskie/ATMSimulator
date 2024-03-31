@@ -21,7 +21,10 @@ import java.util.List;
  */
 public class TransactionDAOImpl implements TransactionDAO {
     /**
-     * @inheritDoc
+     * Retrieves all transactions stored in the database.
+     *
+     * @return A list of Transaction objects representing all transactions.
+     * @throws DAOException If an SQL exception occurs during database operations.
      */
     @Override
     public List<Transaction> getAllTransaction() {
@@ -39,7 +42,10 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     /**
-     * @inheritDoc
+     * Saves a new transaction into the database.
+     *
+     * @param transaction The Transaction object representing the transaction to be saved.
+     * @throws DAOException If an SQL exception occurs during database operations.
      */
     @Override
     public void saveTransaction(Transaction transaction) {

@@ -2,7 +2,10 @@ package org.repinskie.service.models;
 
 import org.repinskie.dao.userDAOInterface.UserDAO;
 
-
+/**
+ * Represents a user account in the system.
+ * Each user has a unique identifier, a username, a surname, a PIN code, and a balance.
+ */
 public class User {
     private Long id;
     private String username;
@@ -10,20 +13,30 @@ public class User {
     private String pinCode;
     private double balance;
 
-    private UserDAO userDAO;
-    public User(UserDAO userDAO){
-        this.userDAO = userDAO;
-    }
-
     public User() {
     }
 
+    /**
+     * Constructs a User object with the provided username, surname, and PIN code.
+     *
+     * @param username Username of the user
+     * @param surname  Surname of the user
+     * @param pinCode  PIN code associated with the user's account
+     */
     public User(String username, String surname, String pinCode) {
         this.username = username;
         this.surname = surname;
         this.pinCode = pinCode;
     }
 
+    /**
+     * Constructs a User object with the provided details.
+     *
+     * @param id       Unique identifier for the user
+     * @param username Username of the user
+     * @param surname  Surname of the user
+     * @param pinCode  PIN code associated with the user's account
+     */
     public User(Long id, String username, String surname, String pinCode) {
         this.id = id;
         this.username = username;

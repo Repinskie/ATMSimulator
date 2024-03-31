@@ -25,7 +25,9 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Retrieves all users from the database.
+     *
+     * @return A list of User objects representing all users.
      */
     @Override
     public List<User> getAllUsers() {
@@ -33,8 +35,13 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Saves user data into the database.
+     *
+     * @param name    Name of the user
+     * @param surName Surname of the user
+     * @param pinCode PIN code associated with the user's account
      */
+
     @Override
     public void saveUserData(String name, String surName, String pinCode) {
         String encryptedPinCode = PinCodeEncryptor.hashPinCode(pinCode);
@@ -43,8 +50,14 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Checks if an account with given details is already saved in the database.
+     *
+     * @param name    Name of the user
+     * @param surName Surname of the user
+     * @param hashPin Hashed PIN code associated with the user's account
+     * @return True if the account exists, otherwise false.
      */
+
     @Override
     public boolean isAccountAlreadySaved(String name, String surName, String hashPin) {
         UserDAO userDAO1 = new UserDAOImpl();
@@ -52,7 +65,12 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Authenticates user account based on provided credentials.
+     *
+     * @param name    Name of the user
+     * @param surName Surname of the user
+     * @param pinCode PIN code entered by the user
+     * @return True if authentication is successful, otherwise false.
      */
     @Override
     public boolean authenticationAccount(String name, String surName, String pinCode) {
@@ -67,7 +85,9 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Registers a new user account.
+     *
+     * @param user The User object representing the user account to be registered.
      */
     @Override
     public void registerAccount(User user) {
@@ -75,7 +95,10 @@ public class UserService implements UserManager {
     }
 
     /**
-     * @inheritDoc
+     * Changes the PIN code associated with a user's account.
+     *
+     * @param name    Name of the user
+     * @param surName Surname of the user
      */
     @Override
     public void changePinCode(String name, String surName) {

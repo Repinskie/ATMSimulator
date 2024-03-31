@@ -17,8 +17,12 @@ import java.util.List;
  */
 public class UserDAOImpl implements UserDAO {
     /**
-     * @inheritDoc
+     * Retrieves a list of all users from the database.
+     *
+     * @return A list containing all user records stored in the database.
+     * @throws DAOException If an SQL exception occurs during database interaction.
      */
+
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -35,7 +39,13 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * @inheritDoc
+     * Retrieves user information based on the provided username, surname, and hashed PIN code.
+     *
+     * @param username    The name of the user.
+     * @param surName     The surname of the user.
+     * @param hashPinCode The hashed PIN code of the user.
+     * @return The user object containing the information retrieved from the database, or null if no user matches the criteria.
+     * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
     public User getUserInfo(String username, String surName, String hashPinCode) {
@@ -62,7 +72,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * @inheritDoc
+     * Saves a new user record into the database.
+     *
+     * @param user The user object to be saved.
+     * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
     public void saveUser(User user) {
@@ -85,7 +98,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * @inheritDoc
+     * Retrieves the name of a user based on the provided username and surname.
+     *
+     * @param name    The name of the user.
+     * @param surName The surname of the user.
+     * @return The name of the user retrieved from the database, or null if no user matches the criteria.
+     * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
     public String getName(String name, String surName) {
@@ -105,9 +123,7 @@ public class UserDAOImpl implements UserDAO {
         return DBUserName;
     }
 
-    /**
-     * @inheritDoc
-     */
+
     @Override
     public String getPinCode(String name, String surName) {
         String DBPinCode = null;
@@ -127,7 +143,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * @inheritDoc
+     * Retrieves the hashed PIN code of a user based on the provided username and surname.
+     *
+     * @param name    The name of the user.
+     * @param surName The surname of the user.
+     * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
     public void saveNewPin(String name, String surName, String pinCode) {

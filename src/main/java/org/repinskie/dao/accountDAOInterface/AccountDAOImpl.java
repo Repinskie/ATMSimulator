@@ -18,8 +18,13 @@ public class AccountDAOImpl implements AccountDAO {
     UserDAO userDAO = new UserDAOImpl();
 
     /**
-     * @inheritDoc
+     * Retrieves the balance of a user based on their name and surname from the database.
+     *
+     * @param name    A string representing the user's first name.
+     * @param surName A string representing the user's last name.
+     * @return The balance of the user.
      */
+
     @Override
     public double getBalance(String name, String surName) {
         double balance = 0.0;
@@ -39,7 +44,11 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     /**
-     * @inheritDoc
+     * Deposits a specified amount to the balance of a user.
+     *
+     * @param name    A string representing the user's first name.
+     * @param surName A string representing the user's last name.
+     * @param amount  A double representing the amount to be deposited.
      */
     @Override
     public void depositBalance(String name, String surName, double amount) {
@@ -60,8 +69,13 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     /**
-     * @inheritDoc
+     * Withdraws a specified amount from the balance of a user.
+     *
+     * @param name    A string representing the user's first name.
+     * @param surName A string representing the user's last name.
+     * @param balance A double representing the amount to be withdrawn.
      */
+
     @Override
     public void withdrawBalance(String name, String surName, double balance) {
         try (Connection connection = DBConnection.getConnection();
@@ -81,7 +95,13 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     /**
-     * @inheritDoc
+     * Transfers a specified amount from one user's account to another user's account.
+     *
+     * @param senderName       A string representing the sender's first name.
+     * @param senderSurName    A string representing the sender's last name.
+     * @param recipientName    A string representing the recipient's first name.
+     * @param recipientSurName A string representing the recipient's last name.
+     * @param amount           A double representing the amount to be transferred.
      */
     @Override
     public void transfer(String senderName, String senderSurName, String recipientName, String recipientSurName, double amount) {

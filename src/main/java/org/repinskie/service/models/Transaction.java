@@ -2,6 +2,11 @@ package org.repinskie.service.models;
 
 import java.util.Date;
 
+/**
+ * Represents a transaction between two parties.
+ * Each transaction contains information such as sender details, recipient details,
+ * transaction amount, and transaction date.
+ */
 public class Transaction {
     private Long id;
     private String senderName;
@@ -11,9 +16,22 @@ public class Transaction {
     private double amount;
     private Date transactionDate;
 
+    /**
+     * Default constructor for the Transaction class.
+     */
     public Transaction() {
     }
 
+    /**
+     * Constructs a Transaction object with provided details.
+     *
+     * @param senderName       Name of the sender
+     * @param senderSurName    Surname of the sender
+     * @param recipientName    Name of the recipient
+     * @param recipientSurName Surname of the recipient
+     * @param amount           Amount of money involved in the transaction
+     * @param transactionDate  Date and time when the transaction occurred
+     */
     public Transaction(String senderName, String senderSurName, String recipientName, String recipientSurName, double amount, Date transactionDate) {
         this.senderName = senderName;
         this.senderSurName = senderSurName;
@@ -23,6 +41,15 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
+    /**
+     * Constructs a Transaction object with provided details.
+     *
+     * @param id              Unique identifier for the transaction
+     * @param senderName      Name of the sender
+     * @param recipientName   Name of the recipient
+     * @param amount          Amount of money involved in the transaction
+     * @param transactionDate Date and time when the transaction occurred
+     */
     public Transaction(Long id, String senderName, String recipientName, double amount, Date transactionDate) {
         this.id = id;
         this.senderName = senderName;

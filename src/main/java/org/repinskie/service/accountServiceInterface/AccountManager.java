@@ -1,7 +1,8 @@
 package org.repinskie.service.accountServiceInterface;
 /**
-* Interface for managing user accounts
-*/
+ * Interface for managing user accounts. This interface defines methods to interact with user accounts,
+ * including checking balance, depositing money, withdrawing money, and transferring funds between accounts.
+ */
 public interface AccountManager {
      /**
      * Check the balance of a user.

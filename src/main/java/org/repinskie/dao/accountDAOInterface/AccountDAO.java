@@ -15,7 +15,6 @@ public interface AccountDAO {
      * @param name    User's name
      * @param surName User's surname
      * @return Balance of the user
-     * @throws SQLException If an SQL exception occurs during database access
      */
     double getBalance(String name, String surName);
 
@@ -25,7 +24,6 @@ public interface AccountDAO {
      * @param name    User's name
      * @param surName User's surname
      * @param amount  Amount to deposit
-     * @throws SQLException If an SQL exception occurs during database access
      */
 
     void depositBalance(String name, String surName, double amount);
@@ -36,7 +34,6 @@ public interface AccountDAO {
      * @param name    User's name
      * @param surName User's surname
      * @param balance Amount to withdraw
-     * @throws SQLException If an SQL exception occurs during database access
      */
 
     void withdrawBalance(String name, String surName, double balance);
@@ -49,7 +46,6 @@ public interface AccountDAO {
      * @param recipientName    Recipient's name
      * @param recipientSurName Recipient's surname
      * @param amount           Amount to transfer
-     * @throws SQLException If an SQL exception occurs during database access
      */
 
     void transfer(String senderName, String senderSurName, String recipientName, String recipientSurName, double amount);

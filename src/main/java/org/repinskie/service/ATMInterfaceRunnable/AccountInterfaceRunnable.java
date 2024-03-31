@@ -1,13 +1,27 @@
 package org.repinskie.service.ATMInterfaceRunnable;
 
 import org.repinskie.service.accountServiceInterface.AccountManager;
+
+/**
+ * A Runnable implementation for account management operations.
+ * This class is responsible for executing account operations in a separate thread.
+ */
 public class AccountInterfaceRunnable implements Runnable {
     private final AccountManager accountManager;
 
+    /**
+     * Constructs an AccountInterfaceRunnable with the specified AccountManager.
+     *
+     * @param accountManager The AccountManager to be used for account operations.
+     */
     public AccountInterfaceRunnable(AccountManager accountManager) {
         this.accountManager = accountManager;
     }
 
+    /**
+     * Executes account management operations.
+     * This method contains the logic to perform various account operations.
+     */
     @Override
     public void run() {
        /* System.out.println("Enter your name:");

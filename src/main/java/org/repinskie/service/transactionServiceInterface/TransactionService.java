@@ -23,7 +23,9 @@ public class TransactionService implements TransactionManager {
     }
 
     /**
-     * @inheritDoc
+     * Retrieves all transactions from the database.
+     *
+     * @return A list of Transaction objects representing all transactions.
      */
     @Override
     public List<Transaction> getAllTransaction() {
@@ -31,7 +33,9 @@ public class TransactionService implements TransactionManager {
     }
 
     /**
-     * @inheritDoc
+     * Saves a transaction into the database.
+     *
+     * @param transaction The transaction to be saved.
      */
     @Override
     public void saveTransaction(Transaction transaction) {
@@ -39,7 +43,13 @@ public class TransactionService implements TransactionManager {
     }
 
     /**
-     * @inheritDoc
+     * Sets transaction data and saves it into the database.
+     *
+     * @param senderName       Name of the sender
+     * @param senderSurName    Surname of the sender
+     * @param recipientName    Name of the recipient
+     * @param recipientSurName Surname of the recipient
+     * @param amount           Amount of the transaction
      */
     @Override
     public void setTransactionData(String senderName, String senderSurName, String recipientName, String recipientSurName, double amount) {

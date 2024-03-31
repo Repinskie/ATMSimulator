@@ -5,25 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdf97a0-7ba8-49ba-90a2-a6a173394e86" name="Changes" comment="Changes in the Service and View">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737/storage_v2/_src_/database/ATMSimulatorDB.qBRN_Q/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/accountManagmentInterface/AccountDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/transactionManagmentInterface/TransactionDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/transactionManagmentInterface/TransactionDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/userManagmentInterface/UserDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/userManagmentInterface/UserDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/exception/DAOException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/models/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/models/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/AccountService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/TransactionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/readerInterface/ReaderInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/readerInterface/ReaderInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/view/UserInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/accountDAOInterface/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/accountDAOInterface/AccountDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/accountDAOInterface/AccountDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/accountDAOInterface/AccountDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/transactionDAOInterface/TransactionDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/transactionDAOInterface/TransactionDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/userDAOInterface/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/dao/userDAOInterface/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/ATMInterfaceRunnable/AccountInterfaceRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/ATMInterfaceRunnable/AccountInterfaceRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/ATMInterfaceRunnable/ConsoleUserInterfaceRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/ATMInterfaceRunnable/ConsoleUserInterfaceRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/models/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/transactionServiceInterface/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/transactionServiceInterface/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/userServiceInterface/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/userServiceInterface/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +198,7 @@
       <workItem from="1711678366975" duration="2233000" />
       <workItem from="1711704466433" duration="18003000" />
       <workItem from="1711775103619" duration="34315000" />
-      <workItem from="1711858035226" duration="14801000" />
+      <workItem from="1711858035226" duration="18700000" />
     </task>
     <servers />
   </component>
