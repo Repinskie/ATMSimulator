@@ -1,60 +1,40 @@
 package org.repinskie.dao.userDAOInterface;
 
 import org.repinskie.dao.dbConnections.DBConnection;
+import org.repinskie.dao.util.UserMapper;
 import org.repinskie.service.exception.DAOException;
 import org.repinskie.service.models.User;
-import org.repinskie.dao.util.UserMapper;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implementation of the {@link UserDAO} interface, providing methods for managing user-related operations.
- * This implementation interacts directly with the database to perform CRUD operations on user data.
+ * Implementation of the {@link UserDAOOutput} interface, providing methods for managing user-related operations.
  * By encapsulating the database interactions within this class, we promote separation of concerns
  * and maintainability in the application.
  */
-public class UserDAOImpl implements UserDAO {
-    /**
-     * Retrieves a list of all users from the database.
-     *
-     * @return A list containing all user records stored in the database.
-     * @throws DAOException If an SQL exception occurs during database interaction.
-     */
-
-    @Override
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM transactions")) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                users.add(UserMapper.mapResultSetToUser(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return users;
-    }
-
+public class UserDAOOutputImpl implements UserDAOOutput {
     /**
      * Retrieves user information based on the provided username, surname, and hashed PIN code.
      *
-     * @param username    The name of the user.
-     * @param surName     The surname of the user.
-     * @param hashPinCode The hashed PIN code of the user.
+     * @param name    The name of the user.
+     * @param surName The surname of the user.
+     * @param pinCode The pinCode of the user.
      * @return The user object containing the information retrieved from the database, or null if no user matches the criteria.
      * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
-    public User getUserInfo(String username, String surName, String hashPinCode) {
+    public User getUserInfo(String name, String surName, String pinCode) {
         User user = null;
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE name = ? AND surname = ? AND pincode = ?")) {
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, name);
             preparedStatement.setString(2, surName);
-            preparedStatement.setString(3, hashPinCode);
+            preparedStatement.setString(3, pinCode);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     user = new User();
@@ -72,29 +52,34 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * Saves a new user record into the database.
+     * Retrieves user information based on the provided username, surname.
      *
-     * @param user The user object to be saved.
+     * @param name    The name of the user.
+     * @param surName The surname of the user.
+     * @return The user object containing the information retrieved from the database, or null if no user matches the criteria.
      * @throws DAOException If an SQL exception occurs during database interaction.
      */
     @Override
-    public void saveUser(User user) {
+    public User getFullName(String name, String surName) {
+        User user = null;
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (name, surname, pinCode, balance) VALUES (?,?,?,?);", Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setString(3, user.getPinCode());
-            preparedStatement.setDouble(4, user.getBalance());
-            preparedStatement.executeUpdate();
-
-            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE name = ? AND surname = ?")) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
+                    user = new User();
                     user.setId(resultSet.getLong("id"));
+                    user.setName(resultSet.getString("name"));
+                    user.setSurname(resultSet.getString("surname"));
+                    user.setPinCode(resultSet.getString("pinCode"));
+                    user.setBalance(resultSet.getDouble("balance"));
                 }
             }
-        } catch (SQLException exception) {
-            throw new DAOException(exception);
+        } catch (SQLException e) {
+            throw new DAOException(e);
         }
+        return user;
     }
 
     /**
@@ -123,7 +108,13 @@ public class UserDAOImpl implements UserDAO {
         return DBUserName;
     }
 
-
+    /**
+     * Retrieves the hashed PIN code of a user based on the provided username and surname.
+     *
+     * @param name    The name of the user.
+     * @param surName The surname of the user.
+     * @throws DAOException If an SQL exception occurs during database interaction.
+     */
     @Override
     public String getPinCode(String name, String surName) {
         String DBPinCode = null;
@@ -143,27 +134,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * Retrieves the hashed PIN code of a user based on the provided username and surname.
+     * Retrieves a list of all users from the database.
      *
-     * @param name    The name of the user.
-     * @param surName The surname of the user.
+     * @return A list containing all user records stored in the database.
      * @throws DAOException If an SQL exception occurs during database interaction.
      */
+
     @Override
-    public void saveNewPin(String name, String surName, String pinCode) {
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET pincode = ? WHERE name = ? AND surname = ?")) {
-            preparedStatement.setString(1, pinCode);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, surName);
-            int rowsAffected = preparedStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("PIN changed successful.");
-            } else {
-                System.out.println("PIN change failed,invalid current PIN or User not found.");
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM transactions")) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                users.add(UserMapper.mapResultSetToUser(resultSet));
             }
         } catch (SQLException e) {
             throw new DAOException(e);
         }
+        return users;
     }
 }

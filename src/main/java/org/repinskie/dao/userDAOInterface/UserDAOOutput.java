@@ -4,31 +4,34 @@ import org.repinskie.service.exception.DAOException;
 import org.repinskie.service.models.User;
 
 import java.util.List;
+
 /**
  * Data Access Object interface for managing user-related operations.
- * This interface defines methods for retrieving, saving, and updating user data in the database.
+ * This interface defines methods for retrieving user data in the database.
  * By abstracting these operations into an interface, we achieve modularity and flexibility in our codebase,
  * allowing different implementations to be used interchangeably without affecting the rest of the application.
  */
-public interface UserDAO {
+public interface UserDAOOutput {
     /**
      * Retrieves user information based on username, surname, and hashed PIN code.
      *
-     * @param username    The username of the user
-     * @param surName     The surname of the user
-     * @param hashPinCode The hashed PIN code of the user
+     * @param name    The username of the user
+     * @param surName The surname of the user
+     * @param pinCode The pinCode of the user
      * @return The user information if found, null otherwise
      * @throws DAOException If an error occurs during database access
      */
-    User getUserInfo(String username, String surName, String hashPinCode);
+    User getUserInfo(String name, String surName, String pinCode);
 
     /**
-     * Saves a new user to the database.
+     * Retrieves user information based on username and surname.
      *
-     * @param user The user to be saved
+     * @param name    The username of the user
+     * @param surName The surname of the user
+     * @return The user information if found, null otherwise
      * @throws DAOException If an error occurs during database access
      */
-    void saveUser(User user);
+    User getFullName(String name, String surName);
 
     /**
      * Retrieves the name of a user based on their name and surname.
@@ -38,7 +41,6 @@ public interface UserDAO {
      * @return The name of the user if found, null otherwise
      * @throws DAOException If an error occurs during database access
      */
-
     String getName(String name, String surName);
 
     /**
@@ -52,15 +54,6 @@ public interface UserDAO {
 
     String getPinCode(String name, String surName);
 
-    /**
-     * Saves a new PIN code for a user in the database.
-     *
-     * @param name    The name of the user
-     * @param surName The surname of the user
-     * @param pinCode The new PIN code to be saved
-     * @throws DAOException If an error occurs during database access
-     */
-    void saveNewPin(String name, String surName, String pinCode);
 
     /**
      * Retrieves a list of all users from the database.
