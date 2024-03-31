@@ -1,6 +1,7 @@
 package org.repinskie.service.transactionServiceInterface;
 
 import org.repinskie.dao.transactionDAOInterface.TransactionDAO;
+import org.repinskie.dao.transactionDAOInterface.TransactionDAOImpl;
 import org.repinskie.service.models.Transaction;
 
 import java.util.Date;
@@ -10,17 +11,7 @@ import java.util.List;
  * Implementation of the {@link TransactionManager} interface, providing services for managing transactions.
  */
 public class TransactionService implements TransactionManager {
-    private TransactionDAO transactionDAO;
-
-    /**
-     * Constructor of the TransactionService class.
-     *
-     * @param transactionDAO TransactionDAO object for accessing transaction data
-     */
-
-    public TransactionService(TransactionDAO transactionDAO) {
-        this.transactionDAO = transactionDAO;
-    }
+    private TransactionDAO transactionDAO = new TransactionDAOImpl();
 
     /**
      * Retrieves all transactions from the database.

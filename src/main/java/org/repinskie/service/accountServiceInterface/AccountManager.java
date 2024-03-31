@@ -9,25 +9,32 @@ public interface AccountManager {
      *
      * @param name User's name
      * @param surName User's surname
-     * @ return user's balance
+     * @param hashPinCode User's hashPinCode
+     * @return user's balance
      */
-     double checkBalance(String name, String surName);
+     double checkBalance(String name, String surName, String hashPinCode);
      /**
       * Deposit money into a user's account.
       *
       * @param name User's name
-      * @param surName User's name*/
-     void doDeposit(String name, String surName);
+      * @param surName User's name
+      * @param pinCode User's pinCode
+      */
+     void doDeposit(String name, String surName, String pinCode);
      /**
       * Withdraw money from a user's account.
       *
       * @param name User's name
-      * @param surName User's surname*/
-     void doWithdraw(String name, String surName);
+      * @param surName User's surname
+      * @param hashPinCode User's hashPinCode
+      */
+     void doWithdraw(String name, String surName, String hashPinCode);
      /**
       * Transfers a certain amount from one user to another.
       *
       * @param senderName User's name
-      * @param senderSurname User's surname*/
-     void transferAmount(String senderName, String senderSurname);
+      * @param senderSurname User's surname
+      * @param hashPinCode User's hashPinCode
+      */
+     void transferAmount(String senderName, String senderSurname, String hashPinCode);
 }

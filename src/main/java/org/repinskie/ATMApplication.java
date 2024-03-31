@@ -1,13 +1,6 @@
 package org.repinskie;
 
 
-import org.repinskie.dao.accountDAOInterface.AccountDAO;
-import org.repinskie.dao.accountDAOInterface.AccountDAOImpl;
-import org.repinskie.dao.transactionDAOInterface.TransactionDAO;
-import org.repinskie.dao.transactionDAOInterface.TransactionDAOImpl;
-import org.repinskie.dao.userDAOInterface.UserDAO;
-import org.repinskie.dao.userDAOInterface.UserDAOImpl;
-import org.repinskie.service.models.User;
 import org.repinskie.service.accountServiceInterface.AccountManager;
 import org.repinskie.service.accountServiceInterface.AccountService;
 import org.repinskie.service.transactionServiceInterface.TransactionManager;
@@ -26,16 +19,9 @@ public class ATMApplication {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-
-        TransactionDAO transactionDAO = new TransactionDAOImpl();
-        AccountDAO accountDAO = new AccountDAOImpl();
-        UserDAO userDAO = new UserDAOImpl();
-
-        TransactionManager transactionManager = new TransactionService(transactionDAO);
-        AccountManager accountManager = new AccountService(userDAO, accountDAO, transactionManager);
-        UserManager userManager = new UserService(userDAO);
-
-        User user = new User(userDAO);
+        TransactionManager transactionManager = new TransactionService();
+        AccountManager accountManager = new AccountService(transactionManager);
+        UserManager userManager = new UserService();
 
         ConsoleUserInterface consoleUserInterface = new ConsoleUserInterface(accountManager, userManager);
         consoleUserInterface.displayStartMenu();

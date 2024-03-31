@@ -2,7 +2,10 @@ package org.repinskie.service.accountServiceInterface;
 
 
 import org.repinskie.dao.accountDAOInterface.AccountDAO;
-import org.repinskie.dao.userDAOInterface.UserDAO;
+import org.repinskie.dao.accountDAOInterface.AccountDAOImpl;
+import org.repinskie.dao.userDAOInterface.UserDAOInput;
+import org.repinskie.dao.userDAOInterface.UserDAOOutput;
+import org.repinskie.dao.userDAOInterface.UserDAOOutputImpl;
 import org.repinskie.service.transactionServiceInterface.TransactionManager;
 import org.repinskie.service.readerInputInterface.AmountReaderInput;
 import org.repinskie.service.readerInputInterface.ReaderInput;
@@ -13,20 +16,16 @@ import org.repinskie.service.readerInputInterface.ReaderInput;
  * withdrawing money, and transferring funds between accounts.
  */
 public class AccountService implements AccountManager {
-    private UserDAO userDAO;
-    private AccountDAO accountDAO;
+    private UserDAOOutput userDAOOutput = new UserDAOOutputImpl();
+    private AccountDAO accountDAO = new AccountDAOImpl();
     private TransactionManager transactionManager;
 
     /**
      * Constructor of the AccountService class.
      *
-     * @param userDAO            UserDAO object for accessing user data
-     * @param accountDAO         AccountDAO object for accessing user data
      * @param transactionManager TransactionManager object for managing transaction.
      */
-    public AccountService(UserDAO userDAO, AccountDAO accountDAO, TransactionManager transactionManager) {
-        this.userDAO = userDAO;
-        this.accountDAO = accountDAO;
+    public AccountService( TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
@@ -35,12 +34,13 @@ public class AccountService implements AccountManager {
      *
      * @param name    The name associated with the account.
      * @param surName The surname associated with the account.
+     * @param hashPinCode The hashPinCode associated with the account.
      * @return The current balance of the account.
      */
 
     @Override
-    public double checkBalance(String name, String surName) {
-        return accountDAO.getBalance(name, surName);
+    public double checkBalance(String name, String surName, String hashPinCode) {
+        return accountDAO.getBalance(name, surName, hashPinCode);
     }
 
     /**
@@ -48,12 +48,13 @@ public class AccountService implements AccountManager {
      *
      * @param name    The name associated with the account.
      * @param surName The surname associated with the account.
+     * @param pinCode The pinCode associated with the account.
      */
     @Override
-    public void doDeposit(String name, String surName) {
+    public void doDeposit(String name, String surName, String pinCode) {
         System.out.println("\nAmount of money to deposit:");
         double amount = AmountReaderInput.readAmount();
-        accountDAO.depositBalance(name, surName, amount);
+        accountDAO.depositBalance(name, surName, pinCode, amount);
     }
 
     /**
@@ -61,15 +62,16 @@ public class AccountService implements AccountManager {
      *
      * @param name    The name associated with the account.
      * @param surName The surname associated with the account.
+     * @param hashPinCode THe surname associated with the account.
      */
     @Override
-    public void doWithdraw(String name, String surName) {
+    public void doWithdraw(String name, String surName, String hashPinCode) {
         System.out.println("\nAmount of money to withdraw:");
         double withdrawAmount = AmountReaderInput.readAmount();
-        double currentBalance = accountDAO.getBalance(name, surName);
+        double currentBalance = accountDAO.getBalance(name, surName, hashPinCode);
         if (currentBalance >= withdrawAmount) {
             double newBalance = currentBalance - withdrawAmount;
-            accountDAO.withdrawBalance(name, surName, withdrawAmount);
+            accountDAO.withdrawBalance(name, surName, hashPinCode, withdrawAmount);
             System.out.println("\nOperation complete, your current balance:\n" + newBalance);
         } else {
             System.out.println("Insufficient funds in the account.");
@@ -81,16 +83,17 @@ public class AccountService implements AccountManager {
      *
      * @param senderName    The name associated with the sender's account.
      * @param senderSurName The surname associated with the sender's account.
+     * @param hashPinCode The hashPinCode associated with the sender's account.
      */
     @Override
-    public void transferAmount(String senderName, String senderSurName) {
+    public void transferAmount(String senderName, String senderSurName, String hashPinCode) {
         System.out.println("Enter an amount for transfer:");
         double amount = AmountReaderInput.readAmount();
         if (amount <= 0) {
             System.out.println("Insufficient funds in the account.");
             return;
         }
-        double senderBalance = accountDAO.getBalance(senderName, senderSurName);
+        double senderBalance = accountDAO.getBalance(senderName, senderSurName, hashPinCode);
         if (senderBalance < amount) {
             System.out.println("Insufficient funds in the account.");
             return;
@@ -99,13 +102,13 @@ public class AccountService implements AccountManager {
         String recipientName = ReaderInput.readName();
         System.out.println("Enter account surname for transfer:");
         String recipientSurName = ReaderInput.readSurName();
-        String recipientNameFromDB = userDAO.getName(recipientName, recipientSurName);
+        String recipientNameFromDB = userDAOOutput.getName(recipientName, recipientSurName);
         if (recipientNameFromDB == null) {
             System.out.println("Recipient not found.");
         } else if (!recipientName.equals(recipientNameFromDB)) {
             System.out.println("Recipient account not found.");
         } else {
-            accountDAO.transfer(senderName, senderSurName, recipientName, recipientSurName, amount);
+            accountDAO.transfer(senderName, senderSurName, hashPinCode, recipientName, recipientSurName, amount);
             transactionManager.setTransactionData(senderName, senderSurName, recipientName, recipientSurName, amount);
             System.out.println("Transfer successful.");
         }

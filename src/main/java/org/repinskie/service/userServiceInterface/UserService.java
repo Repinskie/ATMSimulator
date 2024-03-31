@@ -1,7 +1,9 @@
 package org.repinskie.service.userServiceInterface;
 
-import org.repinskie.dao.userDAOInterface.UserDAO;
-import org.repinskie.dao.userDAOInterface.UserDAOImpl;
+import org.repinskie.dao.userDAOInterface.UserDAOInput;
+import org.repinskie.dao.userDAOInterface.UserDAOInputImpl;
+import org.repinskie.dao.userDAOInterface.UserDAOOutput;
+import org.repinskie.dao.userDAOInterface.UserDAOOutputImpl;
 import org.repinskie.service.models.User;
 import org.repinskie.service.cryptorInterface.PinCodeEncryptor;
 import org.repinskie.service.readerInputInterface.ReaderInput;
@@ -13,16 +15,19 @@ import java.util.List;
  */
 
 public class UserService implements UserManager {
-    private UserDAO userDAO;
+    /*private UserDAOInput userDAOInput;*/
+    private UserDAOInput userDAOInput = new UserDAOInputImpl();
+    private UserDAOOutput userDAOOutput = new UserDAOOutputImpl();
+
 
     /**
      * Constructor of the UserService class.
      *
-     * @param userDAO UserDAO object for accessing user data
+     * @param userDAOInput UserDAO object for accessing user data
      */
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    /*public UserService(UserDAOInput userDAOInput) {
+        this.userDAOInput = userDAOInput;
+    }*/
 
     /**
      * Retrieves all users from the database.
@@ -31,7 +36,7 @@ public class UserService implements UserManager {
      */
     @Override
     public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
+        return userDAOOutput.getAllUsers();
     }
 
     /**
@@ -54,30 +59,26 @@ public class UserService implements UserManager {
      *
      * @param name    Name of the user
      * @param surName Surname of the user
-     * @param hashPin Hashed PIN code associated with the user's account
      * @return True if the account exists, otherwise false.
      */
 
     @Override
-    public boolean isAccountAlreadySaved(String name, String surName, String hashPin) {
-        UserDAO userDAO1 = new UserDAOImpl();
-        return userDAO1.getUserInfo(name, surName, hashPin) != null;
+    public boolean isAccountAlreadySaved(String name, String surName) {
+        return userDAOOutput.getFullName(name, surName) != null;
     }
 
     /**
      * Authenticates user account based on provided credentials.
      *
-     * @param name    Name of the user
-     * @param surName Surname of the user
-     * @param pinCode PIN code entered by the user
+     * @param name        Name of the user
+     * @param surName     Surname of the user
+     * @param hashPinCode PIN code entered by the user
      * @return True if authentication is successful, otherwise false.
      */
     @Override
-    public boolean authenticationAccount(String name, String surName, String pinCode) {
-        UserDAO userDAO1 = new UserDAOImpl();
-        String hashUserPinCode = PinCodeEncryptor.hashPinCode(pinCode);
-        User user = userDAO1.getUserInfo(name, surName, hashUserPinCode);
-        if (user != null && user.checkAccountInfo(name, surName, hashUserPinCode)) {
+    public boolean authenticationAccount(String name, String surName, String hashPinCode) {
+        User user = userDAOOutput.getUserInfo(name, surName, hashPinCode);
+        if (user != null && user.checkAccountInfo(name, surName, hashPinCode)) {
             return true;
         } else {
             return false;
@@ -91,7 +92,7 @@ public class UserService implements UserManager {
      */
     @Override
     public void registerAccount(User user) {
-        userDAO.saveUser(user);
+        userDAOInput.saveUser(user);
     }
 
     /**
@@ -102,16 +103,15 @@ public class UserService implements UserManager {
      */
     @Override
     public void changePinCode(String name, String surName) {
-        UserDAO userDAO1 = new UserDAOImpl();
         System.out.println("Enter current pin code:");
         String currentPin = ReaderInput.readPINCode();
         String hashCurrentPin = PinCodeEncryptor.hashPinCode(currentPin);
-        String hashPinFromDB = userDAO1.getPinCode(name, surName);
+        String hashPinFromDB = userDAOOutput.getPinCode(name, surName);
         if (hashPinFromDB.equals(hashCurrentPin)) {
             System.out.println("Enter new pinCode (4 digits):");
             String newPin = ReaderInput.readPINCode();
             String hashPin = PinCodeEncryptor.hashPinCode(newPin);
-            userDAO1.saveNewPin(name, surName, hashPin);
+            userDAOInput.saveNewPin(name, surName, hashPin);
         } else {
             System.out.println("Invalid current pin code.");
         }

@@ -20,11 +20,10 @@ public interface UserManager {
      *
      * @param name    User's name
      * @param surName User's surname
-     * @param hashPin Hashed PIN code
      * @return True if the account already exists, false otherwise
      */
 
-    boolean isAccountAlreadySaved(String name, String surName, String hashPin);
+    boolean isAccountAlreadySaved(String name, String surName);
 
     /**
      * Changes the PIN code of a user account.

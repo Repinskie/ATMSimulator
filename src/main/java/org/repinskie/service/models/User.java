@@ -1,7 +1,5 @@
 package org.repinskie.service.models;
 
-import org.repinskie.dao.userDAOInterface.UserDAO;
-
 /**
  * Represents a user account in the system.
  * Each user has a unique identifier, a username, a surname, a PIN code, and a balance.

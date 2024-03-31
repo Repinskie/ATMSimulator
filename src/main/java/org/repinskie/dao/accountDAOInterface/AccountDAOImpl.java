@@ -1,8 +1,10 @@
 package org.repinskie.dao.accountDAOInterface;
 
 import org.repinskie.dao.dbConnections.DBConnection;
-import org.repinskie.dao.userDAOInterface.UserDAO;
-import org.repinskie.dao.userDAOInterface.UserDAOImpl;
+import org.repinskie.dao.userDAOInterface.UserDAOInput;
+import org.repinskie.dao.userDAOInterface.UserDAOInputImpl;
+import org.repinskie.dao.userDAOInterface.UserDAOOutput;
+import org.repinskie.dao.userDAOInterface.UserDAOOutputImpl;
 import org.repinskie.service.exception.DAOException;
 
 import java.sql.*;
@@ -15,23 +17,25 @@ import java.sql.*;
  * This promotes maintainability and facilitates future changes to the database structure or technology.
  */
 public class AccountDAOImpl implements AccountDAO {
-    UserDAO userDAO = new UserDAOImpl();
+    UserDAOOutput userDAOOutput= new UserDAOOutputImpl();
 
     /**
      * Retrieves the balance of a user based on their name and surname from the database.
      *
      * @param name    A string representing the user's first name.
      * @param surName A string representing the user's last name.
+     * @param hashPinCode A string representing the user's hashPinCone.
      * @return The balance of the user.
      */
 
     @Override
-    public double getBalance(String name, String surName) {
+    public double getBalance(String name, String surName, String hashPinCode) {
         double balance = 0.0;
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT balance FROM users WHERE name = ? AND surname = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT balance FROM users WHERE name = ? AND surname = ? AND pincode = ?")) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, surName);
+            preparedStatement.setString(3, hashPinCode);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     balance = resultSet.getDouble("balance");
@@ -48,15 +52,17 @@ public class AccountDAOImpl implements AccountDAO {
      *
      * @param name    A string representing the user's first name.
      * @param surName A string representing the user's last name.
+     * @param pinCode A string representing the user's pinCode.
      * @param amount  A double representing the amount to be deposited.
      */
     @Override
-    public void depositBalance(String name, String surName, double amount) {
+    public void depositBalance(String name, String surName, String pinCode, double amount) {
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET balance = balance + ? WHERE name = ? AND surname = ? ")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET balance = balance + ? WHERE name = ? AND surname = ? AND pincode = ?")) {
             preparedStatement.setDouble(1, amount);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, surName);
+            preparedStatement.setString(4, pinCode);
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Deposit successful.");
@@ -73,16 +79,18 @@ public class AccountDAOImpl implements AccountDAO {
      *
      * @param name    A string representing the user's first name.
      * @param surName A string representing the user's last name.
+     * @param hashPinCode A string representing the user's hashPinCode.
      * @param balance A double representing the amount to be withdrawn.
      */
 
     @Override
-    public void withdrawBalance(String name, String surName, double balance) {
+    public void withdrawBalance(String name, String surName, String hashPinCode, double balance) {
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET balance = balance - ? WHERE name = ? AND surname = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET balance = balance - ? WHERE name = ? AND surname = ? AND pincode = ?")) {
             preparedStatement.setDouble(1, balance);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, surName);
+            preparedStatement.setString(4, hashPinCode);
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Withdraw successful.");
@@ -104,8 +112,8 @@ public class AccountDAOImpl implements AccountDAO {
      * @param amount           A double representing the amount to be transferred.
      */
     @Override
-    public void transfer(String senderName, String senderSurName, String recipientName, String recipientSurName, double amount) {
-        String recipient = userDAO.getName(recipientName, recipientSurName);
+    public void transfer(String senderName, String senderSurName, String hashPinCode, String recipientName, String recipientSurName, double amount) {
+        String recipient = userDAOOutput.getName(recipientName, recipientSurName);
         if (recipient == null) {
             System.out.println("Transfer failed. Recipient not found.");
             return;
