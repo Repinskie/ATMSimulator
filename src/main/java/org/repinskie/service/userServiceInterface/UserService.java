@@ -18,17 +18,6 @@ public class UserService implements UserManager {
     /*private UserDAOInput userDAOInput;*/
     private UserDAOInput userDAOInput = new UserDAOInputImpl();
     private UserDAOOutput userDAOOutput = new UserDAOOutputImpl();
-
-
-    /**
-     * Constructor of the UserService class.
-     *
-     * @param userDAOInput UserDAO object for accessing user data
-     */
-    /*public UserService(UserDAOInput userDAOInput) {
-        this.userDAOInput = userDAOInput;
-    }*/
-
     /**
      * Retrieves all users from the database.
      *

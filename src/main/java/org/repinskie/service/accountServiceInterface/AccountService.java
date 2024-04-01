@@ -3,7 +3,6 @@ package org.repinskie.service.accountServiceInterface;
 
 import org.repinskie.dao.accountDAOInterface.AccountDAO;
 import org.repinskie.dao.accountDAOInterface.AccountDAOImpl;
-import org.repinskie.dao.userDAOInterface.UserDAOInput;
 import org.repinskie.dao.userDAOInterface.UserDAOOutput;
 import org.repinskie.dao.userDAOInterface.UserDAOOutputImpl;
 import org.repinskie.service.transactionServiceInterface.TransactionManager;
@@ -86,15 +85,11 @@ public class AccountService implements AccountManager {
      * @param hashPinCode The hashPinCode associated with the sender's account.
      */
     @Override
-    public void transferAmount(String senderName, String senderSurName, String hashPinCode) {
+    public void doTransfer(String senderName, String senderSurName, String hashPinCode) {
         System.out.println("Enter an amount for transfer:");
         double amount = AmountReaderInput.readAmount();
-        if (amount <= 0) {
-            System.out.println("Insufficient funds in the account.");
-            return;
-        }
         double senderBalance = accountDAO.getBalance(senderName, senderSurName, hashPinCode);
-        if (senderBalance < amount) {
+        if (amount <= 0 || senderBalance < amount) {
             System.out.println("Insufficient funds in the account.");
             return;
         }

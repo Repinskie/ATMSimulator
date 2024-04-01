@@ -34,7 +34,5 @@ public interface AccountManager {
       *
       * @param senderName User's name
       * @param senderSurname User's surname
-      * @param hashPinCode User's hashPinCode
-      */
-     void transferAmount(String senderName, String senderSurname, String hashPinCode);
+      * @param hashPinCode(String senderName, String senderSurname, String hashPinCode);
 }

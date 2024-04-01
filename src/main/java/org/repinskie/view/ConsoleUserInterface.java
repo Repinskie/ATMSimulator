@@ -1,7 +1,6 @@
 package org.repinskie.view;
 
 import org.repinskie.service.accountServiceInterface.AccountManager;
-import org.repinskie.service.accountServiceInterface.AccountService;
 import org.repinskie.service.cryptorInterface.PinCodeEncryptor;
 import org.repinskie.service.userServiceInterface.UserManager;
 import org.repinskie.service.readerInputInterface.ReaderInput;
@@ -128,7 +127,7 @@ public class ConsoleUserInterface {
                     accountManager.doWithdraw(name, surName, hashPinCode);
                     break;
                 case '3':
-                    accountManager.transferAmount(name, surName, hashPinCode);
+                    accountManager.doTransfer(name, surName, hashPinCode);
                     break;
                 case '4':
                     accountManager.doDeposit(name, surName, hashPinCode);
