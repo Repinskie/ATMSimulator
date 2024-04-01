@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdf97a0-7ba8-49ba-90a2-a6a173394e86" name="Changes" comment="Changes in the Service and View">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/33997c37-f25a-4dee-9954-1b1947033737.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/userServiceInterface/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/userServiceInterface/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repinskie/service/accountServiceInterface/AccountManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,6 +190,7 @@
       <workItem from="1711775103619" duration="34315000" />
       <workItem from="1711858035226" duration="28001000" />
       <workItem from="1711967668960" duration="917000" />
+      <workItem from="1711968638542" duration="459000" />
     </task>
     <servers />
   </component>
